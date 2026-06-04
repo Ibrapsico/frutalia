@@ -34,13 +34,13 @@ class ForgotPasswordController extends Controller
         // - Si se ha enviado correctamente (reset status es ok), volvemos atrás con mensaej de feedback:
         if ($status === Password::RESET_LINK_SENT) {
             return back()
-                ->with(['status', "Te hemos enviado un enlace para restablecer tu contraseña."]);
+                ->with('status', "Hemos enviado a tu correo un enlace para restablecer tu contraseña.");
         }
 
         // - Si el status tenía errores, volvemos atrás con mensaje de error específico asociado al campo "email" (se guarda en errors[], pero lo puedes 
         // sacar directamente con $message, de Laravel):
         return back()
-            ->withErrors(['email', "No hemos encontrado ninguna cuenta con ese correo, asegúrate de escribirlo correctamente."]);
+            ->withErrors('email', "No hemos encontrado ninguna cuenta con ese correo, asegúrate de escribirlo correctamente.");
         
     }
 }

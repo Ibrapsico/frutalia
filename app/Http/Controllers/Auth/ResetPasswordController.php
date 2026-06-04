@@ -49,7 +49,7 @@ class ResetPasswordController extends Controller
         
         // - Si no, volvemos atrás con mensaje específico de error (específico del campo):
         return back()
-            ->withErrors(['email', 'No se ha podido restablecer tu contraseña.']);
+            ->withErrors('email', 'No se ha podido restablecer tu contraseña.');
         
     }
 }

@@ -13,8 +13,8 @@
         <a href="{{ route('products.index') }}">Productos</a>
         
         @auth
-            <a href="{{ route('profile.show') }}">Mi Perfil</a>
-            <a href="{{ route('products.index') }}">Mis Productos</a>
+            <a href="#">Mi Perfil</a>
+            <a href="#">Mis Productos</a>
             
             @if(auth()->user()->is_admin)
                 <a href="{{ route('admin.dashboard') }}">Panel Admin</a>
