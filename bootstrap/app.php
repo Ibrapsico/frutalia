@@ -11,8 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    // - Registramos nuestros Middleware:
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+       // - Registramos nuestro middleware para el admin, y le asignamos un alias para trabajar más fácil:
+        $middleware->alias([
+                'role' => \App\Http\Middleware\RoleMiddleware::class, 
+            ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

@@ -2,31 +2,57 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
+
     use HasFactory, Notifiable;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+
+    // - Definimos campos que pueden ser asignados para poder usar "create()" de Eloquent:
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'phone',
+        'address',
+    ];
+
+
+    // - (SEGURIDAD) Los campos que no van a estar visibles al serializar (si los llamas de forma explícita sí puedes acceder a ellas):
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    
+    // - Propiedad para convertir automáticamente tipos de datos (fecha y booleano):
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
+    // =========================
+    // === RELACIÓN ROLES ===
+    // =========================
+    
+    // - Relación de a muchos con tabla roles:
+    public function roles()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsToMany(Role::class);
     }
+
+    // - Creamos método para verificar si un user tiene un rol determinado (para no repetir código):
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
 }
+
