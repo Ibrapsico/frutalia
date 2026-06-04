@@ -1,0 +1,90 @@
+
+/* =============================== */
+/* === CSS PARA UI COMPONENTES === */
+/* =============================== */
+
+
+/* NOTAS: 
+    - (bloques de UI reutilizables)
+    - No poner dentro del @layer vanilla css (puede dar errores);
+
+*/
+
+
+
+
+
+/* === (TAILWINDCSS) === */
+/* ===================== */
+
+
+@layer components {
+    
+    /* --- BUTTONS --- */
+    /* --------------- */
+
+    /* - Base para botón: */
+    .btn {
+    @apply px-4 py-2 rounded-lg font-medium;
+    }
+    
+
+
+    
+    /* --- INPUTS: --- */
+    /* --------------- */
+
+
+
+    /* --- CARDS --- */
+    /* ------------- */
+
+    /* - Tarjeta base:: */
+    .card {
+        @apply bg-white rounded-xl shadow-md p-6;
+    }
+
+
+
+    /* --- MENSAJES: --- */
+    /* ----------------- */
+
+    /* - Base para mensajes de notificación: */
+    .alert {
+        @apply p-4 mb-4 rounded-lg;
+    }
+
+    /* - Mensaje de éxito: */
+    .alert-success {
+        @apply bg-green-100 text-green-800 border border-green-300;
+    }
+
+    /* - Mensaje de error: */
+    .alert-error {
+        @apply bg-red-100 text-red-800 border border-red-300;
+    }
+
+
+
+    /* --- BADGES: --- */
+    /* --------------- */
+
+    /* - Base para etiqueta: */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    /* - Etiqueta de éxito: */
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+
+}
+
+
+
+
+/* === (VANILLA CSS) === */
+/* ===================== */
+
+

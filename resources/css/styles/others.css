@@ -1,0 +1,33 @@
+
+/* ================================================== */
+/* ========== OTROS ESTILOS PERSONALIZADOS ========== */
+/* ================================================== */
+
+
+/* NOTAS: 
+    - No son ni utilities ni componentes reutilizables;
+
+*/
+
+
+
+/* - Fondo con degradado diagonal (azul a morado) */
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* - Scrollbar personalizada: ancho de la barra */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* - Scrollbar personalizada: fondo del track */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* - Scrollbar personalizada: parte móvil (thumb) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}

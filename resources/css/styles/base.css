@@ -1,0 +1,52 @@
+
+/* ==================== */
+/* === ESTILOS BASE === */
+/* ==================== */
+
+
+/* NOTAS: 
+    - (cómo debería verse sin clases);
+    - Para reset y normalización visual;
+    - Poner solo elementos HTML nativos;
+    - Cosas globales (tipografía, colores, etc.;
+    - Preferible coger colores del tema configurado (en app.css);
+
+*/
+
+
+/* ========== ESTILOS BASE ========== */
+@layer base {
+    body {@apply bg-bg text-text;}
+    
+    * {@apply text-text;}
+
+    h1 {@apply text-4xl font-bold mb-4 text-gray-900;}
+    h2 {@apply text-3xl font-bold mb-3 text-gray-800;}
+    h3 {@apply text-2xl font-semibold mb-2 text-gray-800;}
+    h4 {@apply text-xl font-semibold mb-2 text-gray-700;}
+    
+    p {@apply mb-4 text-gray-700 leading-relaxed;}
+    a {@apply text-blue-600 hover:text-blue-800 transition-colors;}
+    
+
+
+    label {@apply block text-sm font-medium text-gray-700 mb-1;}
+    
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea,
+    select {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+    }
+
+    button, [type="button"], [type="submit"] {
+        @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all;
+    }
+    
+
+    ul, ol {@apply mb-4 pl-5;}
+    li {@apply mb-1;}
+    
+    table {@apply min-w-full border border-gray-200;}
+    th {@apply px-4 py-2 bg-gray-100 text-left font-semibold;}
+    td {@apply px-4 py-2 border-t border-gray-200;}
+}

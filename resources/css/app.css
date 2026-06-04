@@ -3,7 +3,59 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+
+
+
+/* - Importamos estilos: */
+@import './styles/base.css';
+@import './styles/components.css';
+@import './styles/utilities.css';
+@import './styles/others.css';
+
+
+
+
+
+
+
+
+/* TEMA CALRO: */
 @theme {
+    /* ===== TIPOGRAFÍA ===== */
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* ===== COLORES PRINCIPALES ===== */
+    --color-primary: #3b82f6;   /* (azul) */
+    --color-success: #22c55e;   /* (verde) */
+    --color-danger: #ef4444;    /* (rojo) */
+    --color-warning: #f59e0b;   /* (amarillo) */
+
+    /* ===== NEUTROS ===== */
+    --color-bg: #f9fafb;        /* (fondo app) */
+    --color-surface: #ffffff;   /* (cards) */
+    --color-border: #e5e7eb;    /* (bordes suaves) */
+    --color-text: #111827;      /* (texto principal) */
+    --color-muted: #6b7280;     /* (texto secundario) */
+
+    /* ===== ESPACIADO BASE (opcional) ===== */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+}
+
+
+
+/* TEMA OSCURO: */
+.dark {
+    --color-bg: #0f172a;
+    --color-text: #f8fafc;
 }
