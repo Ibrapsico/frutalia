@@ -9,7 +9,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\CustomerController;
 
 
 
@@ -24,11 +26,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
-
 // ==========================
 // === RUTAS CON REGISTRO ===
 // ==========================
-
 
 // - Rutas de autenticación (usamos el middleware "guest" que ya trae por defecto Laravel):
 Route::middleware('guest')->group(function () {
@@ -55,11 +55,40 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-// Rutas protegidas (temporales, las completarás después)
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', function () { return "Perfil - Próximamente"; })->name('profile.show');
-    Route::get('/products', function () { return "Mis Productos - Próximamente"; })->name('products.index');
+
+// ========================
+// === RUTAS PARA ADMIN ===
+// ========================
+
+// - Protegemos las rutas del Admin meiante middleware: 
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/users', [AdminController::class, 'users']);
+    Route::get('/reports', [AdminController::class, 'reports']);
 });
 
 
 
+// =========================
+// === RUTAS PARA SELLER ===
+// =========================
+
+// - Protegemos las rutas del Admin meiante middleware: 
+Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
+    Route::get('/dashboard', [SellerController::class, 'dashboard']);
+    Route::resource('/products', SellerController::class);
+    Route::get('/orders', [SellerController::class, 'orders']);
+});
+
+
+
+// ==========================
+// === RUTAS PARA CUTOMER ===
+// ==========================
+
+// - Protegemos las rutas del Admin meiante middleware: 
+Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function () {
+    Route::get('/dashboard', [CustomerController::class, 'dashboard']);
+    Route::get('/orders', [CustomerController::class, 'orders']);
+    Route::get('/profile', [CustomerController::class, 'profile']);
+});
