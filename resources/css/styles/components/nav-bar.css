@@ -181,3 +181,71 @@
         }
     }
 }
+
+
+
+/* =========================
+        ICONOS (CARRITO Y WISHLIST)
+   ========================= */
+.nav__icon {
+    @apply
+        relative
+        flex
+        items-center
+        justify-center
+        text-gray-700
+        transition-all
+        duration-200
+        hover:text-primario
+        hover:scale-110
+        cursor-pointer
+    ;
+}
+
+.nav__icon-svg {
+    @apply
+        w-6
+        h-6
+        stroke-current
+        fill-none
+    ;
+}
+
+/* Badge contador (para número de items) */
+.nav__icon-badge {
+    @apply
+        absolute
+        -top-2
+        -right-2
+        bg-primario
+        text-white
+        text-xs
+        font-bold
+        rounded-full
+        w-5
+        h-5
+        flex
+        items-center
+        justify-center
+        shadow-md
+    ;
+}
+
+/* Hover efecto para los iconos */
+.nav__icon:hover .nav__icon-svg {
+    @apply
+        fill-primario/10
+        stroke-primario
+    ;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .nav__icon-svg {
+        @apply w-5 h-5;
+    }
+    
+    .nav__icon-badge {
+        @apply w-4 h-4 text-xs -top-1.5 -right-1.5;
+    }
+}

@@ -30,6 +30,39 @@ Route::get('/legal/privacidad', function() {return "<h1>En mantenimiento.</h1>";
 Route::get('/legal/cookies', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.cookies');
 
 
+
+
+
+// use App\Http\Controllers\CartController;
+// use App\Http\Controllers\WishlistController;
+
+// // Rutas del carrito
+// Route::prefix('cart')->name('cart.')->group(function () {
+//     Route::get('/', [CartController::class, 'index'])->name('index');
+//     Route::post('/add/{product}', [CartController::class, 'add'])->name('add');
+//     Route::patch('/update/{item}', [CartController::class, 'update'])->name('update');
+//     Route::delete('/remove/{item}', [CartController::class, 'remove'])->name('remove');
+// });
+
+// // Rutas de wishlist (lista de deseos)
+// Route::prefix('wishlist')->name('wishlist.')->group(function () {
+//     Route::get('/', [WishlistController::class, 'index'])->name('index');
+//     Route::post('/add/{product}', [WishlistController::class, 'add'])->name('add');
+//     Route::delete('/remove/{product}', [WishlistController::class, 'remove'])->name('remove');
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ==========================
 // === RUTAS CON REGISTRO ===
 // ==========================
