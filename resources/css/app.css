@@ -8,10 +8,18 @@
 
 /* - Importamos estilos: */
 @import './styles/base.css';
+
 @import './styles/components.css';
+@import './styles/components/body.css';
+@import './styles/components/top-bar.css';
+@import './styles/components/header.css';
+@import './styles/components/logo.css';
+@import './styles/components/nav-bar.css';
+@import './styles/components/main.css';
+@import './styles/components/footer.css';
 @import './styles/utilities.css';
 @import './styles/others.css';
-
+@import './styles/forms.css';
 
 
 
@@ -26,7 +34,18 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 
     /* ===== COLORES PRINCIPALES ===== */
-    --color-primary: #3b82f6;   /* (azul) */
+    --color-primario: #2f6f3e;   /* (verde) */
+    --color-secundario: #8b5e3c;   /* (marrón) */
+    --color-terciario: #e07a2d;   /* (amarillo) */
+    
+    /* ===== COLORES CALROS ===== */
+    
+    --color-primario-suave: #6BA368;   /* (verde suave) */
+    --color-primario-claro: #EAF4EA;   /* (verde claro) */
+    --color-secundario-claro: #F5F1E8;   /* (beige) */
+
+
+    /* ===== OTROS ===== */
     --color-success: #22c55e;   /* (verde) */
     --color-danger: #ef4444;    /* (rojo) */
     --color-warning: #f59e0b;   /* (amarillo) */
@@ -35,8 +54,12 @@
     --color-bg: #f9fafb;        /* (fondo app) */
     --color-surface: #ffffff;   /* (cards) */
     --color-border: #e5e7eb;    /* (bordes suaves) */
-    --color-text: #111827;      /* (texto principal) */
-    --color-muted: #6b7280;     /* (texto secundario) */
+    --color-text: #333333;      /* (texto principal) */
+    --color-muted: #DADADA;     /* (texto secundario) */
+    --color-blanco: #FAFAF7;    /* (balnco roto)*/
+    --color-gris: #999999;      /* (gris claro) */
+
+
 
     /* ===== ESPACIADO BASE (opcional) ===== */
     --spacing-xs: 0.25rem;

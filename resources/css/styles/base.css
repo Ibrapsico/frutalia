@@ -16,7 +16,7 @@
 
 /* ========== ESTILOS BASE ========== */
 @layer base {
-    body {@apply bg-bg text-text;}
+
     
     * {@apply text-text;}
 

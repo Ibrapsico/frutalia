@@ -1,0 +1,14 @@
+@layer components {
+    .main {@apply 
+        /* - BG con gradiente hacia blanco: */
+        bg-gradient-to-b from-secundario to-white
+        flex flex-col
+        
+    ;}
+    
+    .main__container {@apply 
+        w-full 
+        max-w-[90vw]
+        mx-auto
+    ;}
+}

@@ -1,0 +1,50 @@
+/* @layer components {
+    .logo__link {@apply 
+        flex items-center space-x-2
+    ;}
+    
+    .logo__img {@apply 
+        h-10 
+        md:h-20 
+        w-auto
+    ;}
+    
+    .logo__text {@apply 
+        text-primario
+        text-xl 
+        font-bold 
+        hidden 
+        sm:inline
+    ;}
+} */
+@layer components {
+    .logo__link {
+        @apply flex items-center space-x-2;
+        position: relative;
+        padding: 2px;
+    }
+    
+    .logo__img {
+        @apply h-10 md:h-20 w-auto;
+        transition: all 0.4s ease;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+    
+    .logo__link:hover .logo__img {
+        filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.4))
+                drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+        /* - Una pqueña rotación y agrandar un poco: */
+        transform: scale(1.03) rotate(2deg);
+    }
+    
+    .logo__text {
+        @apply text-primario text-xl font-bold hidden sm:inline;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+    }
+    
+    .logo__link:hover .logo__text {
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    }
+}

@@ -9,6 +9,10 @@ class HomeController extends Controller
     // - Controlador sencillo paar mostrar el home:
     public function index()
     {
-        return view('home.index');
+        // - Imágenes para el slider:
+        $imagen = 'images/sliders/slider1.jpg';
+    
+    
+        return view('home.index', compact('imagen'));
     }
 }

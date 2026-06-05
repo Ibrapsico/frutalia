@@ -1,29 +1,23 @@
 <x-base-layout>
-    <div class="container">
-        <x-slot:h1>Nueva Contraseña</x-slot:h1>
-        
-        <form method="POST" action="{{ route('password.update') }}">
+    <div class="form__wrapper">
+
+        <x-slot:title>Password Reset</x-slot:title>
+
+        <form class="form__container form__container--compact" method="POST" action="{{ route('password.update') }}">
             @csrf
+
+            <h1 class="form__title">Nueva Contraseña:</h1>
             <input type="hidden" name="token" value="{{ $token }}">
             
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" value="{{ old('email') }}" required>
-                @error('email') <div class="error">{{ $message }}</div> @enderror
-            </div>
+
+            <x-form.input label="Correo electrónico:" name="email" :required="true" />
             
-            <div>
-                <label>Nueva contraseña:</label>
-                <input type="password" name="password" required>
-                @error('password') <div class="error">{{ $message }}</div> @enderror
-            </div>
+            <x-form.input label="Nueva contraseña:" type="password" name="password" :required="true" />
             
-            <div>
-                <label>Confirmar contraseña:</label>
-                <input type="password" name="password_confirmation" required>
-            </div>
+            <x-form.input label="Confirmar contraseña:" type="password" name="password_confirmation" :required="true" />
+
             
-            <button type="submit">Restablecer contraseña</button>
+            <button class="form__btn" type="submit">Restablecer contraseña</button>
         </form>
     </div>    
 </x-base-layout>

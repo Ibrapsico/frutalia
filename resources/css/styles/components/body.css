@@ -1,0 +1,9 @@
+@layer components {
+    body {@apply 
+        bg-bg
+        /* - Altura 100% de pantalla: */
+        min-h-screen
+        /* - Grid para 3 filas; primera y última en auto y la del medio flexible ocupando todo: */
+        grid grid-rows-[auto_1fr_auto];
+    }
+}

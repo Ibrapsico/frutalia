@@ -1,52 +1,21 @@
 
 <x-base-layout>
-
-    <div class="container">
-        <x-slot:h1>Registro de Usuario</x-slot:h1>
-        
+    <x-slot:title>Registro Frutalia</x-slot:title>
+    <div class="form__wrapper">
         <!-- - Dejaremos el formulario en "novalidate" para probar las validatciones del backend: -->
-        <form method="POST" action="{{ route('register') }}" novalidate>
+        <form class="form__container form__container--wide" method="POST" action="{{ route('register') }}" novalidate>
             @csrf
+            <h1 class="form__title">Registro de Usuario</h1>
+            <x-form.input label="Nombre completo:" name="name" :required="true" />
+            <x-form.input label="Correo electrónico:" name="email" :required="true" />
+            <x-form.input label="Teléfono (opcional):" name="phone" :required="false" />
+            <x-form.textarea label="Dirección (opcional):" name="address" :required="false" />
+            <x-form.input label="Contraseña:" type="password" name="password" :required="true" />
+            <x-form.input label="Confirmar contraseña:" type="password" name="password_confirmation" :required="true" />
             
-            <div>
-                <label>Nombre completo:</label>
-                <input type="text" name="name" value="{{ old('name') }}" required>
-                @error('name') <div class="error">{{ $message }}</div> @enderror
-            </div>
-            
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" value="{{ old('email') }}" required>
-                @error('email') <div class="error">{{ $message }}</div> @enderror
-            </div>
-            
-            <div>
-                <label>Teléfono (opcional):</label>
-                <input type="text" name="phone" value="{{ old('phone') }}">
-                @error('phone') <div class="error">{{ $message }}</div> @enderror
-            </div>
-            
-            <div>
-                <label>Dirección (opcional):</label>
-                <textarea name="address">{{ old('address') }}</textarea>
-                @error('address') <div class="error">{{ $message }}</div> @enderror
-            </div>
-            
-            <div>
-                <label>Contraseña:</label>
-                <input type="password" name="password" required>
-                @error('password') <div class="error">{{ $message }}</div> @enderror
-            </div>
-            
-            <div>
-                <label>Confirmar contraseña:</label>
-                <input type="password" name="password_confirmation" required>
-            </div>
-            
-            <button type="submit">Registrarse</button>
+            <button class="form__btn" type="submit">Registrarse</button>
+            <p  class="form__text">¿Ya tienes cuenta? <a  class="form__link" href="{{ route('login') }}">Inicia sesión</a></p>
         </form>
-        
-        <p>¿Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
     </div>
 
 

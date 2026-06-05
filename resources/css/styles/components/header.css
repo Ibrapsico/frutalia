@@ -1,0 +1,52 @@
+@layer components {
+    /* Header principal - contenedor flex horizontal */
+    .header {
+        @apply 
+            bg-gradient-to-b from-primario-suave to-white /* Gradiente de primario suave a blanco */
+            flex /* Layout flex horizontal */
+            items-center /* Centra verticalmente logo y nav */
+            justify-between /* Logo a la izquierda, nav a la derecha */
+            px-6 /* Padding lateral */
+            py-3 /* Padding vertical */
+            shadow-md /* Sombra suave debajo del header */
+        ;
+        max-height: 5rem; /* Altura máxima reducida (80px) */
+    }
+
+    /* Contenedor de la navegación dentro del header */
+    /* Ocupa todo el espacio disponible para permitir centrado de .nav__links */
+    .header .nav-container {
+        @apply 
+            flex /* Layout flex horizontal */
+            items-center /* Centra verticalmente los enlaces */
+            flex-1 /* Ocupa todo el espacio restante entre logo y borde */
+        ;
+    }
+
+    /* Responsive para móvil */
+    @media (max-width: 768px) {
+        .header {
+            @apply 
+                flex-col /* Cambia a columna en móvil */
+                gap-3 /* Espacio entre logo y nav */
+                py-2 /* Reduce padding vertical */
+                px-4 /* Reduce padding lateral */
+            ;
+            max-height: none; /* Elimina altura máxima en móvil */
+        }
+        
+        .header .nav-container {
+            @apply 
+                justify-center /* Centra en móvil */
+                w-full /* Ocupa todo el ancho */
+            ;
+        }
+    }
+
+    /* Ajustes para tablet */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .header {
+            @apply px-4; /* Reduce padding lateral */
+        }
+    }
+}

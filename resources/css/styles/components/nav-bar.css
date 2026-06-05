@@ -1,0 +1,183 @@
+@layer components {
+    /* Navegación principal - layout de 3 columnas con CSS Grid para mejor centrado */
+    .nav {
+        @apply 
+            grid /* Layout grid para control preciso */
+            grid-cols-[1fr_auto_1fr] /* 3 columnas: izquierda, centro, derecha */
+            items-center /* Centra verticalmente todos los elementos */
+            w-full /* Ocupa todo el ancho del contenedor */
+        ;
+    }
+
+    /* Contenedor de enlaces principales (Inicio, Productos) */
+    /* Se centra naturalmente en la columna del medio gracias al grid */
+    .nav__links {
+        @apply 
+            flex /* Layout flex horizontal */
+            items-center /* Centra verticalmente los enlaces */
+            justify-center /* Centra horizontalmente el contenido */
+            gap-6 /* Separación entre enlaces (Inicio y Productos) */
+            col-start-2 /* Coloca en la segunda columna del grid */
+            
+            
+        ;
+    }
+
+    .nav__link {@apply
+        bg-transparent
+        py-4 px-6
+        text-gray-700 /* Color de texto gris oscuro */
+        text-xl
+        font-bold /* Peso de fuente negrita */
+        transition-all /* Transición suave para todos los cambios */
+        duration-300 /* Duración 0.3 segundos */
+        relative /* Para posicionar efectos como subrayado */
+        whitespace-nowrap /* Evita que el texto se rompa en varias líneas */
+        hover:text-primario /* Color primario al hover */
+        hover:drop-shadow-lg /* Sombra de texto al hover */
+        hover:scale-130 /*hover para agrandaer un poco*/
+    ;}
+
+
+
+    /* Efecto hover adicional con animación */
+    .nav__link:hover {
+        transform: translateY(-1px); /* Pequeño levantamiento al hover */
+        text-shadow: 0 0 8px rgba(255, 107, 53, 0.7); /* Sombra de iluminación personalizada */
+    }
+
+
+
+
+
+
+    /* Contenedor de autenticación (Mi Perfil, Panel Admin, Cerrar Sesión, etc.) */
+    /* Se va automáticamente a la derecha por el grid */
+    .nav__auth {
+        @apply 
+            mx-6 /* margen a los lados*/
+            flex /* Layout flex horizontal */
+            items-center /* Centra verticalmente los elementos */
+            justify-end /* Alinea a la derecha */
+            gap-4 /* Separación entre elementos dentro de auth */
+            col-start-3 /* Coloca en la tercera columna del grid */
+        ;
+    }
+
+
+
+
+    .nav__btn {@apply
+        /* fondo verde + texto blanco */
+        text-white shadow-md
+
+        /* padding y forma */
+        px-4 py-2 rounded-sm font-semibold whitespace-nowrap
+
+        /* interacción */
+        cursor-pointer transition duration-200
+
+        /* - Hover: */
+        shadow-xl border-1
+    ;}
+
+
+
+    .nav__btn--login{@apply
+        bg-primario
+        font-semibold
+        
+        /* - Hover: */
+        hover:bg-primario-suave
+        hover:border-primario-claro
+        hover:text-gray-600
+
+    ;}
+
+    .nav__btn--logout{@apply
+        bg-red-600
+
+
+        /* - Hover: */
+        hover:bg-red-300
+        hover:border-primario-claro
+        hover:text-gray-600
+    ;}
+
+
+
+    .nav__cart{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Responsive para móvil */
+    @media (max-width: 768px) {
+        /* En móvil, cambiamos a layout de columna */
+        .nav {
+            @apply 
+                flex /* Cambiamos a flex */
+                flex-col /* Apila los elementos verticalmente */
+                gap-4 /* Espacio entre .nav__links y .nav__auth */
+            ;
+        }
+        
+        /* En móvil, forzamos el orden y centrado */
+        .nav__links {
+            @apply 
+                w-full /* Ocupa todo el ancho */
+                justify-center /* Centra los enlaces */
+                gap-3 /* Reduce separación entre enlaces */
+                order-1 /* Primer elemento en móvil */
+            ;
+        }
+        
+        /* En móvil, .nav__auth se centra */
+        .nav__auth {
+            @apply 
+                w-full /* Ocupa todo el ancho */
+                justify-center /* Centra los elementos */
+                flex-wrap /* Permite wrap si es necesario */
+                gap-3 /* Reduce separación entre elementos */
+                order-2 /* Segundo elemento en móvil */
+            ;
+        }
+        
+        /* Texto más pequeño en móvil para todos los elementos */
+        .nav a,
+        .nav .btn {
+            @apply text-sm; /* Texto tamaño pequeño (14px) */
+        }
+    }
+
+    /* Ajustes para tablet */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        /* Reduce separación entre enlaces en tablet */
+        .nav__links {
+            @apply gap-4; /* Separación de 1rem en lugar de 1.5rem */
+        }
+        
+        /* Reduce separación entre elementos de auth en tablet */
+        .nav__auth {
+            @apply gap-3; /* Separación de 0.75rem */
+        }
+        
+        /* Ajuste responsive para grid en tablet */
+        .nav {
+            @apply grid-cols-[0.5fr_auto_1fr]; /* Columna izquierda más pequeña */
+        }
+    }
+}

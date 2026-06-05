@@ -1,0 +1,118 @@
+@layer components {
+    /* Contenedor principal del footer - fondo negro y texto blanco */
+    .footer__container {
+        @apply bg-black text-white
+        mt-15
+    ;}
+
+    /* Contenedor del contenido principal del footer */
+    .footer__content {
+        @apply 
+            flex flex-col md:flex-row /* Móvil: vertical | Desktop: horizontal */
+            justify-center /* Centra horizontalmente */
+            items-center md:items-start /* Móvil: centra vertical | Desktop: alinea arriba */
+            gap-8 md:gap-12 /* Móvil: 2rem separación | Desktop: 3rem separación */
+            pt-12 pb-8 /* Padding superior e inferior */
+            px-4; /* Padding lateral para móvil */
+    }
+
+    /* Cada sección del footer (logo, contacto, menú legal) */
+    .footer__section {
+        @apply 
+            flex flex-col /* Elementos en columna vertical */
+            items-center md:items-start /* Móvil: centrados | Desktop: alineados izquierda */
+            text-center md:text-left /* Móvil: texto centrado | Desktop: texto izquierda */;
+        min-width: 180px; /* Ancho mínimo para mantener estructura en desktop */
+    }
+
+    /* Primera sección (la del logo) - centrado vertical */
+    .footer__section:first-child {
+        @apply justify-center; /* Centra el logo verticalmente dentro de su contenedor */
+    }
+
+    /* Títulos de cada sección (Contacto, Menú Legal) */
+    .footer__section h4 {
+        @apply 
+            text-lg /* Tamaño de fuente grande */
+            font-semibold /* Peso seminegrita */
+            mb-3; /* Margen inferior para separar del contenido */
+    }
+
+    /* Listas no ordenadas dentro de las secciones */
+    .footer__section ul {
+        @apply 
+            list-none /* Elimina los bullets/puntos de la lista */
+            p-0 m-0; /* Elimina padding y margin por defecto */
+    }
+
+    /* Cada elemento de la lista */
+    .footer__section ul li {
+        @apply 
+            mb-2 /* Margen inferior entre elementos de la lista */
+            text-gray-400; /* Texto gris (más suave que el blanco) */
+    }
+
+    /* Enlaces dentro de las listas */
+    .footer__section ul li a {
+        @apply 
+            text-gray-400 /* Color gris por defecto */
+            hover:text-white /* Al pasar ratón: blanco */
+            transition-colors duration-300; /* Transición suave de color al hacer hover */;
+        text-decoration: none; /* Elimina subrayado de los enlaces */
+    }
+
+    /* Sección inferior del footer (copyright y créditos) */
+    .footer-bottom {
+        @apply 
+            border-t /* Borde superior */
+            border-gray-800 /* Color del borde: gris oscuro */
+            pt-4 pb-6 /* Padding superior e inferior */
+            px-4; /* Padding lateral para móvil */
+    }
+
+    /* Lista de la parte inferior (copyright, FP DAW, diseñador) */
+    .footer-bottom__ul {
+        @apply 
+            flex flex-col md:flex-row /* Móvil: columna | Desktop: fila */
+            items-center /* Centra verticalmente los elementos */
+            justify-center /* Centra horizontalmente todo el contenido */
+            text-sm /* Texto pequeño (14px por defecto) */
+            gap-2 md:gap-0; /* Móvil: 0.5rem separación | Desktop: sin separación */;
+    }
+
+    /* Cada elemento de la lista inferior (li) */
+    .footer-bottom__ul li {
+        @apply 
+            mx-0 md:mx-2; /* Móvil: sin margen lateral | Desktop: 0.5rem margen lateral */
+    }
+
+    /* Elemento con bordes laterales (el del centro: FP DAW - IES A.G. Linares) */
+    .footer-bottom__ul--bordes {
+        @apply 
+            border-0 /* Móvil: sin bordes */
+            md:border-l md:border-r /* Desktop: bordes izquierdo y derecho */
+            border-gray-800 /* Color del borde: gris oscuro */
+            md:pl-4 md:pr-4; /* Desktop: padding lateral de 1rem */;
+    }
+
+    /* Texto en negrita dentro de la lista inferior */
+    .footer-bottom__ul .negrita {
+        @apply 
+            font-bold /* Peso de fuente negrita */
+            text-gray-300; /* Color gris claro (más brillante que el gris 400) */
+    }
+
+    /* Ajustes específicos para móviles muy pequeños (menos de 480px de ancho) */
+    @media (max-width: 480px) {
+        /* Cada sección del footer en móvil pequeño */
+        .footer__section {
+            min-width: auto; /* Elimina el ancho mínimo fijo */
+            width: 100%; /* Ocupa todo el ancho disponible */
+        }
+        
+        /* Lista inferior en móvil muy pequeño */
+        .footer-bottom__ul {
+            @apply text-xs; /* Texto extra pequeño (12px) para que quepa mejor */
+        }
+    }
+}

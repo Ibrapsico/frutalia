@@ -1,0 +1,145 @@
+/* =========================
+   CONTENEDOR DEL FORMULARIO
+   ========================= */
+
+/* - Core formularios: */
+.form__container {@apply
+    /* - Container core: margin auto + padding */
+    max-w-3xl
+    mx-auto my-8 
+    p-6 
+    bg-gray-800/70
+    rounded-lg 
+    shadow-md
+;}
+
+
+/* - Formularios muy simples (login, registro) */
+.form__container--compact {
+    @apply 
+    max-w-2xl
+    mx-auto
+    my-8 
+    p-6
+    bg-gray-800/70
+    rounded-lg 
+    shadow-md
+;}
+
+/* - Formularios extensos: */
+.form__container--wide {
+    @apply 
+    max-w-3xl
+    mx-auto my-8 
+    p-6 
+    bg-gray-800/70
+    rounded-lg 
+    shadow-md
+;}
+
+
+
+/* =========================
+        GRUPO DE CAMPOS
+   ========================= */
+.form__group {
+    /* margin-bottom + layout vertical */
+    @apply mb-4 flex flex-col;
+}
+
+/* =========================
+            LABELS
+   ========================= */
+label {
+    /* margen inferior + negrita */
+    @apply mb-1 font-semibold text-gray-50;
+}
+
+.form__required {@apply
+    text-red-600
+    font-bold
+;}
+
+/* =========================
+        INPUTS Y TEXTAREA
+   ========================= */
+input,
+textarea {
+    /* padding, borde, redondeo y tamaño de texto */
+    @apply px-3 py-2 border border-gray-300 rounded-md text-base bg-gray-200;
+
+    /* transición suave */
+    @apply transition duration-200;
+
+    /* - Hover al pasar: */
+    @apply hover:bg-gray-50/70
+}
+
+/* FOCUS (cuando el usuario escribe) */
+input:focus,
+textarea:focus {
+    /* borde verde tipo "success" */
+    @apply border-green-500 outline-none bg-gray-100/50;
+
+    /* anillo suave verde */
+    @apply ring-2 ring-green-200;
+}
+
+/* =========================
+        MENSAJES DE ERROR
+   ========================= */
+.error {
+    @apply text-red-600 text-sm mt-1;
+}
+
+/* =========================
+        BOTÓN PRINCIPAL
+   ========================= */
+.form__btn {
+    /* fondo verde + texto blanco */
+    @apply bg-green-500 text-white;
+
+    /* padding y forma */
+    @apply px-4 py-2 rounded-md font-semibold mt-6;
+
+    /* interacción */
+    @apply cursor-pointer transition duration-200;
+}
+
+/* hover del botón */
+.form__btn:hover {
+    @apply bg-green-600;
+}
+
+.form__btn-link {@apply
+    /* fondo verde + texto blanco */
+    bg-amber-800 text-white
+
+    /* padding y forma */
+    px-4 py-2 rounded-xl font-semibold
+
+    /* - Hover: */
+    hover:bg-amber-400 hover:text-gray-800
+
+
+;}
+
+/* =========================
+        OTROS
+   ========================= */
+.form__link {@apply
+    text-terciario
+    underline
+    hover:text-green-600 transition duration-200
+    
+;}
+
+.form__text {@apply
+    text-gray-50 text-sm
+    mt-3
+
+;}
+
+.form__title {@apply
+    text-primario-suave
+;}

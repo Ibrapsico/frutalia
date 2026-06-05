@@ -24,6 +24,10 @@ use App\Http\Controllers\CustomerController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
+// - Footer:
+Route::get('/lega/condiciones', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.condiciones');
+Route::get('/legal/privacidad', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.privacidad');
+Route::get('/legal/cookies', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.cookies');
 
 
 // ==========================
