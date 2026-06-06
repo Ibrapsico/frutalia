@@ -1,0 +1,79 @@
+@startuml
+title Frutalia - Mapa de navegación por zonas
+
+left to right direction
+skinparam packageStyle rectangle
+
+' === ZONA PÚBLICA ===
+' ====================
+package "Zona pública (visitante)" {
+    [Inicio]
+    [Productos]
+    [Categorías]
+    [Detalle de producto]
+}
+
+
+' === ZONA USUARIO REGISTRADO ===
+' ===============================
+package "Zona usuario (registrado)" {
+    [Perfil]
+    [Mis productos]
+    [Valoraciones]
+    [Crear producto]
+    [Comprar producto]
+    [Valorar producto]
+    [Valorar usuario]
+}
+
+
+' === ZONA AUTENTICACIÓN ===
+' ==========================
+package "Autenticación" {
+    [Login]
+    [Registro]
+}
+
+
+' === ZONA ADMIN ===
+' ==================
+package "Zona admin" {
+    [Panel admin]
+    [Gestión usuarios]
+    [Gestión productos]
+    [Gestión categorías]
+    [Gestión zonas]
+}
+
+
+' === NAVEGACIÓN ===
+' ==================
+
+' - Inicio:
+[Inicio] --> [Productos]
+[Inicio] --> [Categorías]
+[Inicio] --> [Login]
+[Inicio] --> [Registro]
+
+[Productos] --> [Detalle de producto]
+
+' - Autenticación:
+[Login] --> [Perfil]
+[Registro] --> [Perfil]
+
+' - Usaurio registrado:
+[Perfil] --> [Mis productos]
+[Perfil] --> [Crear producto]
+[Perfil] --> [Valoraciones]
+[Perfil] --> [Panel admin]
+[Perfil] --> [Comprar producto]
+[Comprar producto] --> [Valorar producto]
+[Comprar producto] --> [Valorar usuario]
+
+
+' - Panel admin:
+[Panel admin] --> [Gestión usuarios]
+[Panel admin] --> [Gestión productos]
+[Panel admin] --> [Gestión categorías]
+[Panel admin] --> [Gestión zonas]
+@enduml

@@ -14,7 +14,8 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('role_id')->constrained()->cascadeOnDelete();
-
+            // - Para que las combinaciones sean únicas (ej: que un user no pueda
+            // tener mismo role_id dos veces...):
             $table->unique(['user_id', 'role_id']);
         });
     }

@@ -1,0 +1,34 @@
+@startwbs
+
+* Frutalia
+** Inicio
+
+** Productos
+*** Listado de productos
+*** Detalle de producto
+*** Categorías
+
+** Usuario
+*** Perfil
+**** Ver perfil
+**** Editar perfil
+*** Mis productos
+*** Crear producto
+*** Valoraciones
+
+** Autenticación
+*** Login
+*** Registro
+
+** Panel de administración
+*** Gestión de usuarios
+*** Gestión de productos
+*** Gestión de categorías
+*** Gestión de zonas
+
+** Legal
+*** Condiciones de uso
+*** Política de privacidad
+*** Política de cookies
+
+@endwbs

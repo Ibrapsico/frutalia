@@ -1,0 +1,217 @@
+@startuml
+
+
+
+    ' ===============
+    ' === ESTILOS ===
+    ' ===============
+
+    ' - Flecha gris claro:
+    skinparam ArrowColor #334155
+
+
+
+    ' ==============================
+    ' === ENTIDADES Y RELACIONES ===
+    ' ==============================
+
+    ' - Roles:
+    entity roles #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        name TEXTO
+    }
+
+    ' - Usuarios:
+    entity users #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * role_id <<FK>>
+        name TEXTO
+        surname TEXTO
+        email TEXTO
+        telefono TEXTO
+        password TEXTO
+        created_at FECHA
+    }
+
+
+    ' - Tabla pivote (User Roles):
+    entity role_user #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * user_id <<FK>>
+        * role_id <<FK>>
+    }
+
+    ' - Relaciones N:N de Users y Roles:
+    users ||--|{ role_user : tiene
+    roles ||--o{ role_user : asignado_a
+
+
+
+
+
+
+
+    ' - Categorías:
+    entity categories #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        name TEXTO
+    }
+
+    ' - Productos:
+    entity products #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * user_id <<FK>>
+        * category_id <<FK>>
+        name TEXTO
+        description TEXTO
+        price DECIMAL
+        stock NUMERO
+    }
+
+
+    ' - Tabla pivote (Categorías - Productos):
+    entity category_product #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * category_id <<FK>>
+        * product_id <<FK>>
+    }
+
+
+    ' - Relación Usuarios-Productos:
+    users ||--o{ products : vende
+
+
+
+    ' - Relaciones N:N de Productos y Categorías:
+    categories ||--o{ category_product : asignado_a
+    products ||--o{ category_product : tiene
+
+
+
+
+
+
+    ' - Zones (zona geográfica de España, de momento solo CCAA):
+    entity zones #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        name TEXTO
+    }
+
+
+
+    ' Localizaciones (luegar de encuentro para entrega de pedido):
+    entity locations #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * zone_id <<FK>>
+        name TEXTO
+        address TEXTO
+    }
+
+    ' - Relación zones-Localizaciones:
+    zones ||--|{ locations : tiene
+
+
+
+
+
+    ' - Pedidos:
+    entity orders #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * user_id <<FK>>
+        * location_id <<FK>>
+        total DECIMAL
+        status OPCIONES
+        created_at FECHA
+    }
+
+    ' - Relación Usuarios-Pedidos y Localizaciones-Pedidos:
+    users ||--o{ orders : realiza
+    locations ||--o{ orders : contiene
+
+
+    ' Tabla pivote de pedido - producto (los productos que se han metido en el carrito para comprar):
+    entity order_product #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * order_id <<FK>>
+        * product_id <<FK>>
+        quantity NUMERO
+        price DECIMAL
+    }
+
+    ' - Relación Pedidos-Items de pedido, y Productos-Items de pedido:
+    orders ||--o{ order_product : contiene
+    products ||--o{ order_product : incluido_en
+
+
+
+
+
+
+
+
+
+
+
+    ' - Tabla pivote con atributos para valoraciones de user - producto (PRIORIDAD BAJA!! sólo si me da tiempo):
+    entity product_ratings #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        * product_id <<FK>>
+        * user_id <<FK>>
+        rating NUMERO
+        comment TEXTO
+        created_at FECHA
+        updated_at FECHA
+    }
+
+    ' - Relación de Productos-Valoraciones de productos, y Usuarios-Valoraciones de productos:
+    products ||--o{ product_ratings : tiene
+    users ||--o{ product_ratings : valora
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ' =================================
+    ' === TABLAS PROPIAS DE LARAVEL ===
+    ' =================================
+    ' (NOTA: Estas tablas son básicas para el correcto funcionamiento de Laravel);
+
+
+    ' - Tabla Migraciones (tabla Laravel):
+    entity password_reset_tokens #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * email TEXTO
+        --
+        token TEXTO
+        created_at FECHA
+    }
+
+
+    '  - Tabla Restaurción de contraseña (tabla Laravel):
+    entity migrations #back:4478c0;header:222222;line:334155;text:ffffff; {
+        * id NUMERO
+        --
+        migration TEXTO
+        batch NUMERO
+        created_at FECHA
+    }
+
+@enduml
