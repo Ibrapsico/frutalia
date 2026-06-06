@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
 
         // - Creamos 5 usuarios vendedortes (seller):
         User::factory()
-            ->count(10)
+            ->count(5)
             ->create()
             ->each(function($user) use ($sellerRole) {
                 $user->roles()->attach($sellerRole);
@@ -47,6 +47,28 @@ class UserSeeder extends Seeder
             ]);
         
         $admin->roles()->attach($adminRole);
+
+        // - Creamos un usuario Ibra vendedor:
+        $ibra = User::factory()
+            ->create([
+                'name' => 'Ibra',
+                'email' => 'ibra@gmail.com',
+                'password' => bcrypt('Ibra-1122'),
+            ]);
+
+        $ibra->roles()->attach($sellerRole);
+
+
+        // - Creamos un usuario Tim comprador:
+        $tim = User::factory()
+            ->create([
+                'name' => 'Tim',
+                'email' => 'tim@gmail.com',
+                'password' => bcrypt('Tim-1122'),
+            ]);
+
+        $tim->roles()->attach($customerRole);
+
 
     }
 }

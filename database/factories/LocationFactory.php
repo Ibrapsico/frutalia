@@ -22,7 +22,7 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'zone_id' => Zone::factory(),
+            'zone_id' => Zone::inRandomOrder()->first('id') ?? Zone::factory(),
             'name' => $this->faker->optional()->company(),
             'address' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
