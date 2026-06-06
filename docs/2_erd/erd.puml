@@ -20,6 +20,7 @@
         * id NUMERO
         --
         name TEXTO
+
     }
 
     ' - Usuarios:
@@ -33,6 +34,7 @@
         telefono TEXTO
         password TEXTO
         created_at FECHA
+        updated_at FECHA
     }
 
 
@@ -59,6 +61,8 @@
         * id NUMERO
         --
         name TEXTO
+        created_at FECHA
+        updated_at FECHA
     }
 
     ' - Productos:
@@ -71,6 +75,8 @@
         description TEXTO
         price DECIMAL
         stock NUMERO
+        created_at FECHA
+        updated_at FECHA
     }
 
 
@@ -102,6 +108,8 @@
         * id NUMERO
         --
         name TEXTO
+        created_at FECHA
+        updated_at FECHA
     }
 
 
@@ -113,6 +121,10 @@
         * zone_id <<FK>>
         name TEXTO
         address TEXTO
+        city TEXTO
+        cp INTEGER
+        created_at FECHA
+        updated_at FECHA
     }
 
     ' - Relación zones-Localizaciones:
@@ -131,6 +143,7 @@
         total DECIMAL
         status OPCIONES
         created_at FECHA
+        updated_at FECHA
     }
 
     ' - Relación Usuarios-Pedidos y Localizaciones-Pedidos:
@@ -151,10 +164,6 @@
     ' - Relación Pedidos-Items de pedido, y Productos-Items de pedido:
     orders ||--o{ order_product : contiene
     products ||--o{ order_product : incluido_en
-
-
-
-
 
 
 

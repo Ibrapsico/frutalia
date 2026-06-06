@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('zone_id')->constrained()->cascadeOnDelete();
+            $table->string('name')->nullable();
+            $table->text('address');
+            $table->string('city');
+            $table->unsignedInteger('cp');
+            
             $table->timestamps();
         });
     }
