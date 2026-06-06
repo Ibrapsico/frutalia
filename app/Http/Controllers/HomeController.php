@@ -13,6 +13,6 @@ class HomeController extends Controller
         $imagen = 'images/sliders/slider1.jpg';
     
     
-        return view('home.index', compact('imagen'));
+        return view('pages.index', compact('imagen'));
     }
 }

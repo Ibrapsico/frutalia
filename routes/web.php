@@ -10,8 +10,16 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SellerController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
+
+
+// use App\Http\Controllers\CartController;
+// use App\Http\Controllers\WishlistController;
+
 
 
 
@@ -22,40 +30,17 @@ use App\Http\Controllers\CustomerController;
 
 // - Home:
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/products', function() {return view('pages.products');})->name('products');
 
 
 // - Footer:
-Route::get('/lega/condiciones', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.condiciones');
+Route::get('/legal/condiciones', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.condiciones');
 Route::get('/legal/privacidad', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.privacidad');
 Route::get('/legal/cookies', function() {return "<h1>En mantenimiento.</h1>";})->name('legal.cookies');
 
 
-
-
-
-// use App\Http\Controllers\CartController;
-// use App\Http\Controllers\WishlistController;
-
-// // Rutas del carrito
-// Route::prefix('cart')->name('cart.')->group(function () {
-//     Route::get('/', [CartController::class, 'index'])->name('index');
-//     Route::post('/add/{product}', [CartController::class, 'add'])->name('add');
-//     Route::patch('/update/{item}', [CartController::class, 'update'])->name('update');
-//     Route::delete('/remove/{item}', [CartController::class, 'remove'])->name('remove');
-// });
-
-// // Rutas de wishlist (lista de deseos)
-// Route::prefix('wishlist')->name('wishlist.')->group(function () {
-//     Route::get('/', [WishlistController::class, 'index'])->name('index');
-//     Route::post('/add/{product}', [WishlistController::class, 'add'])->name('add');
-//     Route::delete('/remove/{product}', [WishlistController::class, 'remove'])->name('remove');
-// });
-
-
-
-
-
-
+// - Mantenimiento:
+Route::get('/mantenimiento', function () {return view('errors.503');})->name('mantenimiento');
 
 
 
@@ -93,39 +78,55 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 
 
 
-// ========================
-// === RUTAS PARA ADMIN ===
-// ========================
 
-// - Protegemos las rutas del Admin meiante middleware: 
+
+
+
+
+// ==================
+// === RUTAS AUTH ===
+// ==================
+
+// - Rutas comunes:
+// ----------------
+Route::middleware(['auth'])->group(function () {
+    
+    // - Perfil:
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    
+
+    // - Lista de desos:
+    // Route::get('/wishlist', [WhishlistController::class, 'show'])->name('wishlist.show');
+    // Route::post('/wishlist/{product}', [WhishlistController::class, 'add'])->name('wishlist.add');
+    // Route::delete('/wishlist/{product}', [WhishlistController::class, 'remove'])->name('wishlist.remove');
+
+    // - Carrito:
+    // Route::get('/wishlist', [CartController::class, 'show'])->name('wishlist.show');
+    // Route::post('/wishlist/{product}', [CartController::class, 'add'])->name('wishlist.add');
+    // Route::delete('/wishlist/{product}', [CartController::class, 'remove'])->name('wishlist.remove');
+
+    // - Pedidos:
+    // Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    // Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+});
+
+
+
+
+// - Rutas Seller:
+// ----------------
+Route::middleware(['auth', 'role:seller|admin'])->prefix('seller')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('seller.dashboard');
+    Route::resource('/products', ProductController::class);
+    
+    // - Pedidos:
+    // Route::get('/orders', [OrderController::class, 'orders'])->name('seller.orders');
+});
+
+
+// - Rutas Admin:
+// ----------------
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::get('/users', [AdminController::class, 'users']);
-    Route::get('/reports', [AdminController::class, 'reports']);
-});
-
-
-
-// =========================
-// === RUTAS PARA SELLER ===
-// =========================
-
-// - Protegemos las rutas del Admin meiante middleware: 
-Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
-    Route::get('/dashboard', [SellerController::class, 'dashboard']);
-    Route::resource('/products', SellerController::class);
-    Route::get('/orders', [SellerController::class, 'orders']);
-});
-
-
-
-// ==========================
-// === RUTAS PARA CUTOMER ===
-// ==========================
-
-// - Protegemos las rutas del Admin meiante middleware: 
-Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function () {
-    Route::get('/dashboard', [CustomerController::class, 'dashboard']);
-    Route::get('/orders', [CustomerController::class, 'orders']);
-    Route::get('/profile', [CustomerController::class, 'profile']);
+    Route::get('/admin', [AdminController::class, 'show'])->name('admin.panel');
 });

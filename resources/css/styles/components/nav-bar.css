@@ -79,6 +79,8 @@
 
         /* - Hover: */
         shadow-xl border-1
+
+        inline-flex items-center gap-2
     ;}
 
 
@@ -92,31 +94,11 @@
         hover:border-primario-claro
         hover:text-gray-600
 
+        rounded-md
+        /* - Icono: */
+        inline-flex items-center gap-2
+
     ;}
-
-    .nav__btn--logout{@apply
-        bg-red-600
-
-
-        /* - Hover: */
-        hover:bg-red-300
-        hover:border-primario-claro
-        hover:text-gray-600
-    ;}
-
-
-
-    .nav__cart{}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -180,72 +162,122 @@
             @apply grid-cols-[0.5fr_auto_1fr]; /* Columna izquierda más pequeña */
         }
     }
-}
 
 
 
-/* =========================
-        ICONOS (CARRITO Y WISHLIST)
-   ========================= */
-.nav__icon {
-    @apply
-        relative
-        flex
-        items-center
-        justify-center
-        text-gray-700
-        transition-all
-        duration-200
-        hover:text-primario
-        hover:scale-110
-        cursor-pointer
-    ;
-}
 
-.nav__icon-svg {
-    @apply
-        w-6
-        h-6
-        stroke-current
-        fill-none
-    ;
-}
+    /* =========================
+    ICONOS (CARRITO Y WISHLIST)
+    ========================= */
+    .nav__icon {
+        @apply
+            relative
+            flex
+            items-center
+            justify-center
+            text-gray-700
+            transition-all
+            duration-200
+            hover:text-primario
+            hover:scale-110
+            cursor-pointer
+        ;
+    }
 
-/* Badge contador (para número de items) */
-.nav__icon-badge {
-    @apply
-        absolute
-        -top-2
-        -right-2
-        bg-primario
-        text-white
-        text-xs
-        font-bold
-        rounded-full
-        w-5
-        h-5
-        flex
-        items-center
-        justify-center
-        shadow-md
-    ;
-}
-
-/* Hover efecto para los iconos */
-.nav__icon:hover .nav__icon-svg {
-    @apply
-        fill-primario/10
-        stroke-primario
-    ;
-}
-
-/* Responsive para móvil */
-@media (max-width: 768px) {
     .nav__icon-svg {
-        @apply w-5 h-5;
+        @apply
+            w-6
+            h-6
+            stroke-current
+            fill-none
+        ;
     }
-    
+
+    /* Badge contador (para número de items) */
     .nav__icon-badge {
-        @apply w-4 h-4 text-xs -top-1.5 -right-1.5;
+        @apply
+            absolute
+            -top-2
+            -right-2
+            bg-primario
+            text-white
+            text-xs
+            font-bold
+            rounded-full
+            w-5
+            h-5
+            flex
+            items-center
+            justify-center
+            shadow-md
+        ;
     }
+
+    /* Hover efecto para los iconos */
+    .nav__icon:hover .nav__icon-svg {
+        @apply
+            fill-primario/10
+            stroke-primario
+        ;
+    }
+
+    /* Responsive para móvil */
+    @media (max-width: 768px) {
+        .nav__icon-svg {
+            @apply w-5 h-5;
+        }
+        
+        .nav__icon-badge {
+            @apply w-4 h-4 text-xs -top-1.5 -right-1.5;
+        }
+    }
+
+
+
+
+    /* ================= */
+    /* === DROPDOWN === */
+    /* ================= */
+
+    .nav__dropdown-trigger {@apply
+        /* - Icono: */
+        inline-flex items-center gap-2
+        
+        bg-terciario
+        font-bold
+    ;}
+
+    .nav__dropdown {
+        @apply relative;
+    }
+
+    .nav__dropdown-menu {
+        @apply absolute top-full right-0 min-w-[180px] bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50;
+    }
+
+    .nav__dropdown-item {
+        @apply block w-full px-4 py-2 text-left bg-none border-none cursor-pointer
+        font-semibold
+        text-gray-800
+        hover:bg-gray-300
+
+    ;}
+
+
+    .nav__dropdown-item--logout {@apply 
+        text-red-400
+        shadow-2xl
+        font-semibold
+        bg-inherit
+        /* - Icono: */
+        inline-flex items-center gap-2
+    ;}
+
+    .nav__dropdown-item--admin {@apply
+        bg-yellow-100
+        rounded-full
+    ;}
+
+
 }
+
