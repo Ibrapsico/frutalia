@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderFactory extends Factory
 {
+
+
     /**
      * Define the model's default state.
      *
@@ -17,8 +19,14 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+
+        $statuses = ['pendiente', 'procesando', 'completado'];
+
         return [
-            //
+            'user_id' => User::factory(),
+            'location_id' => Location::factory(),
+            'total' => $this->faker->randomFloat(2, 10, 1000),
+            'status' => $this->faker->randomElement($statuses),
         ];
     }
 }

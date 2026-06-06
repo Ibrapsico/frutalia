@@ -17,7 +17,13 @@ class DatabaseSeeder extends Seeder
         // - Registramos UserSeeder:
         $this->call([
             RoleSeeder::class,
-            UserSeeder::class,        
+            UserSeeder::class,
+            CategorySeeder::class,
+            LocationSeeder::class,
+            OrderSeeder::class,
+            ProductSeeder::class,
+            ProductRatingSeeder::class,
+            ZoneSeeder::class,
         ]);
     }
 }
