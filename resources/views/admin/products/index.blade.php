@@ -1,6 +1,6 @@
 <x-base-layout>
 
-    <h1 class="text-center my-10">Productos</h1>
+    <h1 class="text-center my-10">Productos panel de administración</h1>
     <div class="flex justify-between items-center mb-4 mx-6">
 
             <!-- - Enlace Volver: -->
@@ -9,7 +9,7 @@
                 ← Volver
             </a>
 
-            <a href="{{ route('admin.users.create') }}"
+            <a href="{{ route('admin.products.create') }}"
             class="text-gray-50 bg-primario hover:bg-green-600 py-2 px-5 rounded">
                 + Nuevo producto
             </a>            

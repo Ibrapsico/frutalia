@@ -5,9 +5,9 @@
         
         {{-- TÍTULO --}}
         <div class="max-w-7xl mx-auto mb-10 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-primario">
+            <h1 class="text-3xl md:text-4xl font-bold text-primario-suave">
                 Productos en venta
-            </h2>
+            </h1>
             <p class="mt-2 font-semibold">
                 Descubre productos frescos de tu zona
             </p>

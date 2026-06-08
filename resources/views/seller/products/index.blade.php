@@ -1,20 +1,37 @@
 <x-base-layout>
 
-    <h1 class="text-center my-10">Productos</h1>
+    <h1 class="text-center my-10">Productos Vendedor</h1>
     <div class="flex justify-between items-center mb-4 mx-6">
 
 
+                        {{-- - Condicional para ver si es admin o seller: --}}
+                        @if(auth()->user()->hasRole('seller'))
+                            <!-- - Enlace Volver: -->
+                            <a href="{{ route('products') }}" 
+                                class="mx-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                ← Volver
+                            </a>
 
-            <!-- - Enlace Volver: -->
-            <a href="{{ route('products') }}" 
-                class="mx-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                ← Volver
-            </a>
+                            <a href="{{ route('seller.products.create') }}"
+                            class="text-gray-50 bg-primario hover:bg-green-600 py-2 px-5 rounded">
+                                + Nuevo producto
+                            </a>       
+                        
+                        @elseif(auth()->user()->hasRole('admin'))
+                            <!-- - Enlace Volver: -->
+                            <a href="{{ route('admin.panel') }}" 
+                                class="mx-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                ← Volver
+                            </a>
 
-            <a href="{{ route('seller.products.create') }}"
-            class="text-gray-50 bg-primario hover:bg-green-600 py-2 px-5 rounded">
-                + Nuevo producto
-            </a>            
+                            <a href="{{ route('admin.products.create') }}"
+                            class="text-gray-50 bg-primario hover:bg-green-600 py-2 px-5 rounded">
+                                + Nuevo producto
+                            </a>       
+                        @endif
+
+
+     
 
     </div>
 
