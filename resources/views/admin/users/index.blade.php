@@ -35,7 +35,11 @@
                 <tr class="odd:bg-gray-700 even:bg-gray-500">
                     <td class="border p-2 text-gray-50">{{ $user->id }}</td>
                     <td class="border p-2 text-gray-50">{{ $user->name }}</td>
-                    <td class="border p-2 text-gray-50">{{ $user->role }}</td>
+                    <td class="border p-2 text-gray-50">
+                        @foreach($user->roles as $role)
+                            {{ $role->name }}
+                        @endforeach
+                    </td>
                     <td class="border p-2 text-gray-50">{{ $user->email }}</td>
                     <td class="border p-2 text-gray-50">{{ $user->phone }}</td>
                     <td class="border p-2 text-gray-50">{{ $user->adress }}</td>

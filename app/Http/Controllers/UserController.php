@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -20,9 +21,10 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('user', 'roles'));
     }
 
     /**
@@ -32,15 +34,23 @@ class UserController extends Controller
     {
     $validated = $request->validate([
         'name' => 'required|string|min:3|max:255',
+        'role' => 'required|exists:roles,id',
         'email' => 'required|email|max:255|unique:users,email',
         'phone' => 'nullable|string|min:9|max:15',
         'address' => 'nullable|string|max:255',
         'password' => 'required|string|min:8|confirmed',
     ]);
 
+    // - Una vez validado, separamos role del resto en el array:
+    $roleId = $validated['role'];
+    unset($validated['role']);
+
     $validated['password'] = Hash::make($validated['password']);
 
-    User::create($validated);
+    $user = User::create($validated);
+
+    // - Asignamosr rol en pivote:
+    $user->roles()->attach($roleId);
 
     return redirect()
         ->route('admin.users.index')
@@ -60,7 +70,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -70,6 +81,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
+            'role' => 'required|exists:roles,id',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'phone' => 'nullable|string|min:9|max:15',
             'address' => 'nullable|string|max:255',
@@ -82,7 +94,13 @@ class UserController extends Controller
             unset($validated['password']);
         }
 
+        // - Actualizamos datos de usuario:
         $user->update($validated);
+
+        // - Actualizmso rol (tabla pivote); 
+        // - Usamos sync (Elimina roles anteriores, ssigna el nuevo, evita duplicados):
+            $user->roles()->sync([$validated['role']]);
+
 
         return redirect()
             ->route('admin.users.index')

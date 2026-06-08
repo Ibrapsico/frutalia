@@ -28,6 +28,16 @@
 
         <input type="text" name="name" placeholder="Nombre" class="border p-2 w-full mb-2">
 
+        <select name="role" class="bg-gray-50 border p-2 w-full mb-2">
+            <option value="">-- Selecciona rol --</option>
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}"
+                    {{ $user->roles->contains($role->id) ? 'selected' : '' }}>
+                    {{ $role->name }}
+                </option>
+            @endforeach
+        </select>
+
         <input type="text" name="email" placeholder="Correo electrónico" class="border p-2 w-full mb-2">
 
         <input type="text" name="phone" placeholder="Teléfono" class="border p-2 w-full mb-2">
