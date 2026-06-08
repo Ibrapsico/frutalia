@@ -3,6 +3,7 @@ left to right direction
 
 actor "Visitante" as Guest
 actor "Usuario registrado" as User
+actor "Vendedor" as Seller
 actor "Administrador" as Admin
 
 rectangle "Frutalia" {
@@ -10,32 +11,34 @@ rectangle "Frutalia" {
     ' --- Acceso público ---
     Guest --> (Ver productos)
     Guest --> (Buscar productos)
-    Guest --> (Filtrar por categoría/zona)
     Guest --> (Registrarse)
 
     ' --- Usuario registrado ---
-    User --> (Iniciar sesión)
-    User --> (Publicar producto)
-    User --> (Editar producto)
-    User --> (Eliminar producto)
     User --> (Comprar producto)
     User --> (Seleccionar punto de encuentro)
     User --> (Valorar producto)
     User --> (Valorar vendedor)
     User --> (Gestionar perfil)
 
-    ' --- Relaciones entre casos ---
-    (Comprar producto) --> (Seleccionar punto de encuentro) : <<include>>
-    (Valorar producto) --> (Comprar producto) : <<extend>>
-    (Valorar vendedor) --> (Comprar producto) : <<extend>>
+    ' --- Vendedor (registrado) ---
+    Seller --> (Publicar producto)
+    Seller --> (Editar producto)
+    Seller --> (Eliminar producto)
+    User --> (Comprar producto)
+    User --> (Seleccionar punto de encuentro)
+    User --> (Valorar producto)
+    User --> (Valorar vendedor)
+    User --> (Gestionar perfil)
+
 
     ' --- Admin ---
-    Admin --> (Gestionar usuarios)
-    Admin --> (CRUD categorías)
-    Admin --> (CRUD zonas de encuentro)
+    Admin --> (CRUD usuarios)
+    Admin --> (CRUD productos)
 
     ' --- Herencia de actor ---
-    Admin --|> User
+    User --|> Guest
+    Seller --|> User
+    Admin --|> Seller
 
 }
 

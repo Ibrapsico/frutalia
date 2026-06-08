@@ -1,6 +1,18 @@
 
 <x-base-layout>
     <x-slot:title>Registro Frutalia</x-slot:title>
+    
+    @if ($errors->any())
+        <div class="my-10 rounded bg-red-100 text-red-700 font-semibold p-3 mb-4 mx-auto">
+            <h3>Error:</h3>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <div class="form__wrapper">
         <!-- - Dejaremos el formulario en "novalidate" para probar las validatciones del backend: -->
         <form class="form__container form__container--wide" method="POST" action="{{ route('register') }}" novalidate>

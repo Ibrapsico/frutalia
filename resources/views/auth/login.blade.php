@@ -2,7 +2,16 @@
 
     <x-slot:title>Login Frutalia</x-slot:title>
 
-
+        @if ($errors->any())
+            <div class="my-10 rounded bg-red-100 text-red-700 font-semibold p-3 mb-4 mx-auto">
+                <h3>Error:</h3>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         @if (session('status')) 
             <div class="alert-success">{{ session('status') }}</div>
