@@ -2,33 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
-class ProductController extends Controller
+class SellerController extends Controller
 {
+    
+    // =====================
+    // === OTROS MÉTODOS ===
+    // =====================
+
+
     /**
-     * Display a listing of the resource.
+     * - Obtener Dashboard de Vendedor.
+     * @return \Illuminate\Contracts\View\View
      */
+    public function get_dashboard()
+    {
+        return view('seller.dashboard');
+    }
+
     
 
+
+    // ============
+    // === CRUD ===
+    // ============
+
+    /**
+     * - Obtener productos del usuario actual.
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
+        $products = Product::where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')  
+            ->simplePaginate(20)
+            ->withQueryString();  // Para mantener filtros en paginación
 
-    // Obtener productos del usuario actual (orden: created + dessc):
-    $products = Product::latest()->simplePaginate(10);
-    return view('admin.products.index', compact('products'));
-
-
+        return view('seller.products.index', compact('products'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('admin.products.create');
+        return view('seller.products.create');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,12 +66,11 @@ class ProductController extends Controller
             'price' => str_replace(',', '.', $request->price),
         ]);
 
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:1',
+            'stock' => 'required|integer|min:0',
         ]);
 
         // - Añadimos el usuario autenticado
@@ -53,29 +78,30 @@ class ProductController extends Controller
 
         Product::create($validated);
 
-        return back()
-            ->with('success', 'Nuevo producto creado.');
-
-        // return redirect()
-        //     ->route('admin.products.index')
-        //     ->with('success', 'Nuevo producto creado.');
+        return redirect()->route('seller.products.index');
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show(Product $product)
     {
-        return view('admin.products.show', compact('product'));
+        return view('seller.products.show', compact('product'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        return view('seller.products.edit', compact('product'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -89,9 +115,11 @@ class ProductController extends Controller
 
         $product->update($request->all());
         return redirect()
-            ->route('admin.products.index')
-            ->with('success', 'Producto actualizado.');
+            ->route('seller.products.index')
+            ->with('success', 'Actualización realizada correctamente');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -99,8 +127,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()
-            ->route('admin.products.index')
-            ->with('success', 'Producto eliminado con éxito.');
+        return redirect()->route('seller.products.index');
     }
+
+
+
+
 }

@@ -11,4 +11,19 @@
         max-w-[90vw]
         mx-auto
     ;}
+
+
+
+    /* === ELEMENTOS === */
+    /* - Párrafo blanco */
+    .main__p--light {@apply
+        
+        text-terciario
+        text-xl
+        font-semibold
+    ;}
+
+    .main__h--light {@apply
+        text-gray-50
+    ;}
 }

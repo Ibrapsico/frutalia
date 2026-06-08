@@ -18,18 +18,21 @@
         
         {{-- Mensajes globales FUERA del container --}}
         @if(session('success'))
-            <div class="alert alert-success text-center">{{ session('success') }}</div>
+            <div class="alert alert-success text-center font-semibold px-10 mt-10 mx-auto">{{ session('success') }}</div>
         @endif
         
         @if(session('error'))
-            <div class="alert alert-danger text-center">{{ session('error') }}</div>
+            <div class="alert alert-danger text-center font-semibold px-10 mt-10 mx-auto">{{ session('error') }}</div>
         @endif
 
         {{-- CONTENIDO --}}
         {{ $slot }}
 
     </main>
-    <h1>{{ $h1 ?? "" }}</h1>
+
+    
+    
+    
     {{-- FOOTER --}}
     <x-footer-layout />
 </body>

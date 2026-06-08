@@ -3,62 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Zone;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * - Muestra la el panelAdmin con los totales de las tablas.
      */
-    public function index()
+    public function get_admin_panel()
     {
-        //
+        // - Guardamos datos en variables;
+        $totalUsers = User::count();
+        $totalProducts = Product::count();
+        $totalCategories = Category::count();
+        $totalZones = Zone::count();
+
+        // - Pasamos las var. a la vista de dashboard del admin:
+        return view('admin.panel', compact('totalUsers', 'totalProducts', 'totalCategories', 'totalZones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
-     * Store a newly created resource in storage.
+     * - Obtiene los productos subidos como vendedor.
+     * @return \Illuminate\Contracts\View\View
      */
-    public function store(Request $request)
+    public function get_seller_products()
     {
-        //
+        // Obtener productos del usuario actual
+        $products = Product::where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')  // Opcional pero recomendado
+            ->simplePaginate(20)
+            ->withQueryString();  // Para mantener filtros en paginación
+
+        return view('seller.products.index', compact('products'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

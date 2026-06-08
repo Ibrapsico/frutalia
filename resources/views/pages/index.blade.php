@@ -3,8 +3,8 @@
     {{-- HERO FULL WIDTH --}}
     <section class="relative w-full h-[80vh] overflow-hidden">
         
-        <img 
-            src="{{ asset($imagen ?? 'images/hero.jpg') }}" 
+        <img
+            src="{{ $images['hero'] ?? asset('images/logoFrutalia.png') }}" 
             alt="Frutalia" 
             class="absolute inset-0 w-full h-full object-cover opacity-80"
         >
@@ -17,85 +17,69 @@
                 Bienvenidos a Frutalia
             </h1>
 
-            <p class="text-lg md:text-2xl max-w-2xl mb-6 text-blanco drop-shadow-lg">
-                El marketplace de frutas y verduras frescas de tu zona (km0)
+            <p class="text-lg md:text-2xl max-w-2xl mb-6 text-terciario font-semibold drop-shadow-lg">
+                El marketplace de frutas y verduras frescas de tu zona
             </p>
-
-            @auth
-                <p class="text-xl md:text-2xl opacity-90 text-blanco drop-shadow-lg">
-                    ¡Hola, {{ auth()->user()->name }}!
-                </p>
-            @endauth
 
         </div>
     </section>
-    <!-- <x-hero /> -->
 
-    {{-- PRODUCTOS --}}
-    <section class="py-12 px-4 md:px-8">
+    <section class="max-w-2xl mx-auto px-2 py-10 font-semibold text-lg text-justify" >
+        <h2 class="text-primario">De la huerta a tu casa en tan solo un clic.</h2>
         
-        {{-- TÍTULO --}}
-        <div class="max-w-7xl mx-auto mb-10 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-primario">
-                Productos en venta
-            </h2>
-            <p class="mt-2 font-semibold">
-                Descubre productos frescos de tu zona
-            </p>
-        </div>
-
-
-        {{-- GRID DE PRODUCTOS --}}
-<div class="max-w-7xl mx-auto grid gap-6 
-            grid-cols-1 
-            sm:grid-cols-2 
-            lg:grid-cols-3 
-            xl:grid-cols-4
-            items-stretch">
-
-            {{-- EJEMPLO (luego aquí haces @foreach($products as $product)) --}}
-@for ($i = 0; $i < 8; $i++)
-    <div class="card group bg-white rounded-xl overflow-hidden flex flex-col transition duration-300 hover:shadow-[0_10px_30px_rgba(47,111,62,0.8)]">
+        <p><span class="font-bold text-primario">Frutalia</span> es una plataforma de compra-venta de productos locales donde productores y particulares pueden ofrecer lo que cultivan o elaboran en su propia zona: huertos urbanos, macetas, pequeños terrenos o producción artesanal de proximidad.</p>
         
-        {{-- Imagen ARRIBA --}}
-        <a class="h-44 w-full overflow-hidden block" href="#">
-            
+        <div class="grid grid-cols-2 gap-4 my-6">
+
             <img 
-                src="{{ asset('images/products/1.jpg') }}" 
-                alt="Producto"
-                class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-110"
+                src="{{ $images['apoyo01'] ?? asset('images/logoFrutalia.png') }}" 
+                alt="Frutalia 1"
+                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+            >  
+
+            <img 
+                src="{{ $images['apoyo05'] ?? asset('images/logoFrutalia.png') }}" 
+                alt="Frutalia 2"
+                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
             >
 
-        </a>    
+            <img 
+                src="{{ $images['apoyo04'] ?? asset('images/logoFrutalia.png') }}" 
+                alt="Frutalia 4"
+                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+            >
 
-        {{-- Contenido --}}
-        <div class="p-3 flex flex-col gap-1">
-            
-            {{-- Título --}}
-            <h3 class="mx-auto">
-                <a href="#" class="text-base font-semibold text-primario hover:text-primario-suave transition text-lg">
-                    Tomates ecológicos
-                </a>
-            </h3>
+            <img 
+                src="{{ $images['apoyo02'] ?? asset('images/logoFrutalia.png') }}" 
+                alt="Frutalia 3"
+                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+            >               
 
-            {{-- Descripción --}}
-            <p class="text-sm text-gris leading-snug line-clamp-3">
-                Tomates cultivados de forma natural en huerto local, sin pesticidas.
-            </p>
 
-            {{-- Precio --}}
-            <div class="mt-2 mx-auto">
-                <span class="text-lg font-bold text-terciario">
-                    3,50€ <span class="text-sm text-gris">(IVA incluido)</span>
-                </span>
-            </div>
 
         </div>
-    </div>
-@endfor
+        
+      
 
+        <p>El objetivo es sencillo: reducir la distancia entre quien produce y quien consume, fomentando el comercio de <span class="font-bold text-primario">kilómetro cero</span>, actividad más sostenible, transparente y cercana, derivada de la localidad en la que vives.</p>
+        <p>Este pequeño paso pretende alcanzar un objetivo más ambicioso: la creación de una <span class="font-bold text-primario">comunidad sostenible de mercado local</span>. Los compradores pueden explorar productos, contactar con vendedores, realizar compras y dejar valoraciones tanto del producto como del vendedor, generando la confianza necesaria dentro de esa comunidad.</p>
+
+
+        <p>Las entregas se realizan de forma acordada en puntos de encuentro predefinidos, seleccionados desde un listado de ubicaciones seguras y convenientes para ambas partes.</p>
+        
+        <div class="flex justify-center my-8">
+            <img 
+                src="{{ $images['apoyo03'] ?? asset('images/logoFrutalia.png') }}" 
+                alt="Frutalia apoyo 03"
+                class="w-2/3 md:w-1/2 object-cover rounded-2xl shadow-xl transition-transform duration-300 hover:scale-101"
+            >
         </div>
+        
+        <p>En definitiva, <a class="text-terciario hover:text-primario" href="{{ route('products') }}">Frutalia</a> no es solo una tienda online: es una red local que impulsa la economía de proximidad y el consumo responsable. ¡Anímate y súmate al cambio!</p>
+
+
 
     </section>
+
 
 </x-base-layout>

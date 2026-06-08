@@ -1,0 +1,15 @@
+[90m= [39m[34;4mApp\Models\User[39;24m {#8112
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: [32m"[39m[32mJude Bashirian[39m[32m"[39m,
+    [34memail[39m: [32m"[39m[32mcamron.quitzon@example.com[39m[32m"[39m,
+    [34memail_verified_at[39m: [32m"[39m[32m2026-06-06 17:42:52[39m[32m"[39m,
+    #[33mpassword[39m: [32m"[39m\$[32m2y[39m\$[32m12[39m\$[32m3sIEK.Rbt8rcHgjd8oKYeOJlyhjZKSnruLzktPLUu3MRNEPRPpEGa[39m[32m"[39m,
+    [34mphone[39m: [32m"[39m[32m332-587-8732[39m[32m"[39m,
+    [34maddress[39m: <<<[32mEOS[39m
+      [32m977 Ortiz Mission[39m
+      [32mEast Rockyburgh, MS 19438-9630[39m
+      [32mEOS[39m,
+    #[33mremember_token[39m: [32m"[39m[32mdwGrbh6G9n[39m[32m"[39m,
+    [34mcreated_at[39m: [32m"[39m[32m2026-06-06 17:42:54[39m[32m"[39m,
+    [34mupdated_at[39m: [32m"[39m[32m2026-06-06 17:42:54[39m[32m"[39m,
+  }

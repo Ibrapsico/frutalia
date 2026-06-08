@@ -12,12 +12,14 @@
             @auth
                 <div x-data="{ open: false }" class="nav__dropdown">
 
-                    <!-- BOTÓN -->
+
+                    {{-- BOTÓNs: --}}
                     <button 
                         @click="open = !open"
                         class="nav__dropdown-trigger"
                     >
-                        <!-- ICONO USUARIO -->
+
+                        {{-- Icono User: --}}
                         <svg class="nav__dropdown-icon" xmlns="http://www.w3.org/2000/svg" 
                             width="20" height="20" viewBox="0 0 24 24" fill="none" 
                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -25,10 +27,11 @@
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
 
-                        <!-- NOMBRE -->
+
+                        {{-- Nombre: --}}
                         <span>{{ auth()->user()->name }}</span>
 
-                        <!-- TRIÁNGULO -->
+                        {{-- Triángulo: --}}
                         <svg 
                             class="nav__dropdown-arrow"
                             :class="{ 'nav__dropdown-arrow--open': open }"
@@ -41,7 +44,7 @@
                         </svg>
                     </button>
 
-                    <!-- MENÚ -->
+                    {{-- MENÚ: --}}
                     <div 
                         x-show="open"
                         @click.outside="open = false"
@@ -51,13 +54,14 @@
                         <a class="nav__dropdown-item" href="{{ route('profile.index') }}">Mi Perfil</a>
 
                         @if(auth()->user()->hasRole('seller'))
-                            <a class="nav__dropdown-item" href="{{ route('mantenimiento') }}">Mis Productos</a>
-                            <a class="nav__dropdown-item" href="{{ route('mantenimiento') }}">Mi Panel</a>
+                            <a class="nav__dropdown-item" href="{{ route('seller.products.index') }}">Mis Productos</a>
+                            <a class="nav__dropdown-item" href="{{ route('mantenimiento') }}">Panel Ventas</a>
                         @endif
 
                         @if(auth()->user()->hasRole('admin'))
-                            <a class="nav__dropdown-item" href="{{ route('mantenimiento') }}">Mi Panel</a>
-                            <a class="nav__dropdown-item nav__dropdown-item--admin" href="{{ route('home') }}">Panel Admin</a>
+                            <a class="nav__dropdown-item" href="{{ route('admin.products.seller') }}">Mis Productos</a>
+                            <a class="nav__dropdown-item" href="{{ route('mantenimiento') }}">Panel Ventas</a>
+                            <a class="nav__dropdown-item nav__dropdown-item--admin" href="{{ route('admin.panel') }}">Panel Admin</a>
                         @endif
 
                         <form method="POST" action="{{ route('logout') }}">
@@ -87,7 +91,7 @@
 
 
             {{-- Iconos de carrito y wishlist (siempre visibles) --}}
-            <a class="nav__icon" href="{{ route('home') }}" aria-label="Carrito de compras">
+            <a class="nav__icon" href="{{ route('mantenimiento') }}" aria-label="Carrito de compras">
                 <svg class="nav__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
@@ -96,7 +100,7 @@
                 <span class="nav__icon-badge">0</span>
             </a>
 
-            <a class="nav__icon" href="{{ route('home') }}" aria-label="Lista de deseos">
+            <a class="nav__icon" href="{{ route('mantenimiento') }}" aria-label="Lista de deseos">
                 <svg class="nav__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                 </svg>
